@@ -21,7 +21,8 @@
         <link rel="apple-touch-icon" href="img/icons/icon-512x512.png">
     </head>
 
-    <body data-spy="scroll" data-target="#myScrollspy">
+    <body data-spy="scroll" data-target="#myScrollspy" style="background: #001129;">
+
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
@@ -52,61 +53,53 @@
         </div>
         </nav>
 
-        <!-- Header -->
-        <header>
-            <div class="header-content">
-                <div class="header-content-inner">
-                    <h1><span class="dev">DEV HUB</span> Channel <i id="yout-icon" class="fa-brands fa-youtube"></i></h1>
-                    <p>"DEV HUB" is a YouTube channel dedicated to programming, offering concise and informative tutorials, coding challenges, and insightful discussions on various programming languages, frameworks, and technologies.</p>
-                    <div class="home-btn">
-                        <a href="#services"><button class="serBtn">Services</button></a>
-                        <button style="display: none;" id="install">Install App</button>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <!-- Course -->
+        <section class="portfolio-section" id="portfolio">
+            <h3>Our Courses</h3>
+            <div class="portfolio-section-inner">
+                <div class="container mx-auto">
 
-        <!-- Services -->
-        <section class="service-section" id="services">
-        <div class="container">
-            <h3>service</h3>
-            
-            <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="service-items">
-                        <div class="icon">
-                            <i class="fa-solid fa-laptop-code"></i>
+                    <div class="row justify-content-center" id="project-card">
+                        <div class="row justify-content-center js-scroll fade-btm scrolled col-lg-12">
+
+                            <div class="card col-lg-4 mb-5" id="card-project">
+                                    <img src="img/cover.png" class="card-img-top" alt="project-image" />
+                                <div class="body-flex">
+                                    <div class="card-body">
+                                        <h4>PWA Course</h4>
+                                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam non doloremque eveniet et, aspernatur quibusdam.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card col-lg-4 mb-5" id="card-project">
+                                    <img src="img/cover2.jpg" class="card-img-top" alt="project-image" />
+                                <div class="body-flex">
+                                    <div class="card-body">
+                                        <h4>Html & CSS and Projects Course</h4>
+                                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam non doloremque eveniet et, aspernatur quibusdam.</p>
+                                    </div>
+                                </div>
+                            </div>                
+
+                            <div class="card col-lg-4 mb-5" id="card-project">
+                                    <img src="img/cover.png" class="card-img-top" alt="project-image" />
+                                <div class="body-flex">
+                                    <div class="card-body">
+                                        <h4>PWA Course</h4>
+                                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam non doloremque eveniet et, aspernatur quibusdam.</p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <h4><a href="#">Comprehensive Tutorials</a></h4>
-                        <p>Dive into the world of programming with our easy-to-follow tutorials covering a wide range of topics, from basic concepts to advanced techniques.</p>
                     </div>
-                </div>
                 
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="service-items">
-                        <div class="icon">
-                            <i class="fa-regular fa-circle-question"></i>
-                        </div>
-                        <h4><a href="#">Interactive Q&A Sessions</a></h4>
-                        <p>Creating mobile ready websites is a breeze with Bootstrap thanks to the fluid grid layout that dynamically adjusts to the proper screen resolution.</p>
-                    </div>
                 </div>
-                
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="service-items">
-                        <div class="icon">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <h4><a href="#">Practical Projects</a></h4>
-                        <p>Learn by doing with our hands-on project-based approach, where we guide you through building real-world applications step-by-step. </p>
-                    </div>
-                </div>
-                
             </div>
-        </div>
         </section>
 
-        <!-- Contact Footer -->
+        <!-- Footer -->
         <footer id="contact">
         <div class="container">
             <div class="row">
@@ -128,11 +121,6 @@
             </div>
         </div>
         </footer>
-
-        <!-- Scroll Section -->
-        <div class="scrollBtn active" href="#" >
-            <i class="fas fa-angle-double-up" aria-hidden="true"></i>
-        </div>
 
         <script src="js/script.js"></script>
         <script src="js/bootstrap.js"></script>
