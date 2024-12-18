@@ -1,59 +1,48 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>موقع المراجعة الدراسية</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نظام مراجعة الدروس</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    a {
+      display: block;
+      margin: 10px 0;
+      font-size: 18px;
+      text-decoration: none;
+      color: #007bff;
+    }
+  </style>
+
+ <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>موقع المراجعة الدراسية</h1>
-    </header>
+  <header>
+  
+    <nav>
+      <a href="index.html">الصفحة الرئيسية</a>
+      <a href="multiple-choice.html">اختر الإجابة</a>
+      <a href="fill-in.html">أكمل العبارة</a>
+      <a href="order.html">رتب الكلمات</a>
+    </nav>
+  </header>
+  <main>
+   <section>
+  <h1>نظام مراجعة الدروس</h1>
+  <a href="multiple-choice.html">أسئلة اختر الإجابة</a>
+  <a href="match.html">أسئلة وصل</a>
+  <a href="fill-in.html">أسئلة أكمل العبارة</a>
+  <a href="order.html">أسئلة رتب الكلمات</a>
+  <a href="view-questions.html">عرض الأسئلة</a>
+  <a href="test.html">إجراء اختبار</a>
 
-    <main>
-        <nav>
-            <ul>
-                <li><a href="#grades">المراحل الدراسية</a></li>
-                <li><a href="#students">الطلاب</a></li>
-                <li><a href="#subjects">المواد الدراسية</a></li>
-                <li><a href="#lessons">الدروس</a></li>
-                <li><a href="#history">تاريخ الطلاب</a></li>
-            </ul>
-        </nav>
-
-        <div id="grades">
-            <h2>المراحل الدراسية</h2>
-            <table id="grades-table"></table>
-        </div>
-
-        <div id="students">
-            <h2>الطلاب</h2>
-            <table id="students-table"></table>
-        </div>
-
-        <div id="subjects">
-            <h2>المواد الدراسية</h2>
-            <table id="subjects-table"></table>
-        </div>
-
-        <div id="lessons">
-            <h2>الدروس</h2>
-            <table id="lessons-table"></table>
-        </div>
-
-        <div id="history">
-            <h2>تاريخ الطلاب</h2>
-            <table id="history-table"></table>
-        </div>
-    </main>
-
-    <footer>
-        <p>موقع المراجعة الدراسية</p>
-    </footer>
-
-    <script src="script.js"></script>
+    </section>
+  </main>
+  <script src="app.js"></script>
 </body>
 </html>
