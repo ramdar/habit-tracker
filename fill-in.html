@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أسئلة أكمل العبارة</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>أسئلة أكمل العبارة</h1>
+    <nav>
+      <a href="index.html">الصفحة الرئيسية</a>
+      <a href="multiple-choice.html">اختر الإجابة</a>
+      <a href="match.html">وصل الخيارات</a>
+      <a href="order.html">رتب الكلمات</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <form id="questionForm">
+        <h2>إضافة سؤال جديد</h2>
+        <label for="subject">المادة:</label>
+        <input type="text" id="subject" placeholder="اسم المادة" required>
+        
+        <label for="question">السؤال (استخدم ______ لتحديد مكان الإجابة):</label>
+        <textarea id="question" placeholder="أدخل نص السؤال" required></textarea>
+        
+        <label for="answer">الإجابة:</label>
+        <input type="text" id="answer" placeholder="الإجابة الصحيحة" required>
+        
+        <button type="submit">إضافة السؤال</button>
+      </form>
+    </section>
+    <section>
+      <h2>الأسئلة المضافة</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>المادة</th>
+            <th>السؤال</th>
+            <th>الإجابة</th>
+            <th>إجراءات</th>
+          </tr>
+        </thead>
+        <tbody id="questionsTable">
+          <!-- الأسئلة ستُضاف هنا -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script src="fill-in.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أسئلة وصل الخيارات</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>أسئلة وصل الخيارات</h1>
+    <nav>
+      <a href="index.html">الصفحة الرئيسية</a>
+      <a href="multiple-choice.html">اختر الإجابة</a>
+      <a href="fill-in.html">أكمل العبارة</a>
+      <a href="order.html">رتب الكلمات</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <form id="questionForm">
+        <h2>إضافة سؤال جديد</h2>
+        <label for="subject">المادة:</label>
+        <input type="text" id="subject" placeholder="اسم المادة" required>
+        
+        <label for="question">السؤال:</label>
+        <textarea id="question" placeholder="نص السؤال"></textarea>
+        
+        <label for="pairs">الأزواج (اكتب العناصر كأزواج مفصولة بفواصل. مثال: سؤال1=جواب1, سؤال2=جواب2):</label>
+        <textarea id="pairs" placeholder="أدخل الأزواج" required></textarea>
+        
+        <button type="submit">إضافة السؤال</button>
+      </form>
+    </section>
+    <section>
+      <h2>الأسئلة المضافة</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>المادة</th>
+            <th>السؤال</th>
+            <th>الأزواج</th>
+            <th>إجراءات</th>
+          </tr>
+        </thead>
+        <tbody id="questionsTable">
+          <!-- الأسئلة ستُضاف هنا -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script src="match.js"></script>
+</body>
+</html>

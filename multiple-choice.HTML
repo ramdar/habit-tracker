@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أسئلة اختر الإجابة</title>
+<link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    label, input, button {
+      display: block;
+      margin: 10px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+  <h1>أسئلة اختر الإجابة</h1>
+  <form id="questionForm">
+    <label for="subject">المادة:</label>
+    <input type="text" id="subject" placeholder="اسم المادة" required>
+    
+    <label for="question">السؤال:</label>
+    <input type="text" id="question" placeholder="أدخل السؤال" required>
+    
+    <label for="options">الخيارات (افصلها بفواصل):</label>
+    <input type="text" id="options" placeholder="مثال: خيار1, خيار2, خيار3" required>
+    
+    <label for="answer">الإجابة الصحيحة:</label>
+    <input type="text" id="answer" placeholder="الإجابة الصحيحة" required>
+    
+    <button type="submit">إضافة السؤال</button>
+  </form>
+
+  <h2>الأسئلة المضافة</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>المادة</th>
+        <th>السؤال</th>
+        <th>الخيارات</th>
+        <th>الإجابة</th>
+        <th>إجراءات</th>
+      </tr>
+    </thead>
+    <tbody id="questionsTable">
+      <!-- الأسئلة ستُضاف هنا -->
+    </tbody>
+  </table>
+
+  <script src="multiple-choice.js"></script>
+</body>
+</html>

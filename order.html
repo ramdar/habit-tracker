@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أسئلة رتب الكلمات</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>أسئلة رتب الكلمات</h1>
+    <nav>
+      <a href="index.html">الصفحة الرئيسية</a>
+      <a href="multiple-choice.html">اختر الإجابة</a>
+      <a href="match.html">وصل الخيارات</a>
+      <a href="fill-in.html">أكمل العبارة</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <form id="questionForm">
+        <h2>إضافة سؤال جديد</h2>
+        <label for="subject">المادة:</label>
+        <input type="text" id="subject" placeholder="اسم المادة" required>
+        
+        <label for="sentence">الجملة (رتب الكلمات بشكل صحيح):</label>
+        <textarea id="sentence" placeholder="أدخل الجملة"></textarea>
+        
+        <label for="correctOrder">الترتيب الصحيح (افصل بين الكلمات بفاصلة):</label>
+        <textarea id="correctOrder" placeholder="اكتب الترتيب الصحيح"></textarea>
+        
+        <button type="submit">إضافة السؤال</button>
+      </form>
+    </section>
+    <section>
+      <h2>الأسئلة المضافة</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>المادة</th>
+            <th>الجملة</th>
+            <th>الترتيب الصحيح</th>
+            <th>إجراءات</th>
+          </tr>
+        </thead>
+        <tbody id="questionsTable">
+          <!-- الأسئلة ستُضاف هنا -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script src="order.js"></script>
+</body>
+</html>

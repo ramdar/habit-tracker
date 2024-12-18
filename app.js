@@ -1,69 +1,175 @@
-// تخزين البيانات في IndexedDB
-let db;
+// فتح قاعدة البيانات وإنشاء الجداول
+const openDB = () => {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("ReviewApp", 1);
 
-// فتح أو إنشاء قاعدة بيانات
-const request = indexedDB.open("HabitDB", 1);
-request.onupgradeneeded = function (event) {
-  db = event.target.result;
-  db.createObjectStore("habits", { keyPath: "id", autoIncrement: true });
+    // إنشاء قاعدة البيانات والجداول إذا لم تكن موجودة
+    request.onupgradeneeded = (e) => {
+      const db = e.target.result;
+
+      // إنشاء الجدول لأسئلة "اختر الإجابة"
+      if (!db.objectStoreNames.contains("multiple-choice")) {
+        db.createObjectStore("multiple-choice", { keyPath: "id", autoIncrement: true });
+      }
+
+      // إنشاء الجدول لأسئلة "وصل الخيارات"
+      if (!db.objectStoreNames.contains("match")) {
+        db.createObjectStore("match", { keyPath: "id", autoIncrement: true });
+      }
+
+      // إنشاء الجدول لأسئلة "أكمل العبارة"
+      if (!db.objectStoreNames.contains("fill-in")) {
+        db.createObjectStore("fill-in", { keyPath: "id", autoIncrement: true });
+      }
+
+      // إنشاء الجدول لأسئلة "رتب الكلمات"
+      if (!db.objectStoreNames.contains("order")) {
+        db.createObjectStore("order", { keyPath: "id", autoIncrement: true });
+      }
+    };
+
+    request.onsuccess = (e) => resolve(e.target.result);
+    request.onerror = (e) => reject(e.target.error);
+  });
 };
-request.onsuccess = function (event) {
-  db = event.target.result;
-  loadHabits();
+
+// إضافة أسئلة إلى قاعدة البيانات حسب النوع
+const addQuestionToDB = async (type, questionData) => {
+  const db = await openDB();
+  const tx = db.transaction(type, "readwrite");
+  const store = tx.objectStore(type);
+
+  return new Promise((resolve, reject) => {
+    const request = store.add(questionData);
+    request.onsuccess = () => resolve();
+    request.onerror = (e) => reject(e.target.error);
+  });
 };
-request.onerror = function (event) {
-  console.error("Error opening IndexedDB:", event.target.errorCode);
+
+// جلب الأسئلة بناءً على النوع
+const getQuestionsByType = async (type) => {
+  const db = await openDB();
+  const tx = db.transaction(type, "readonly");
+  const store = tx.objectStore(type);
+
+  return new Promise((resolve, reject) => {
+    const request = store.getAll();
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = (e) => reject(e.target.error);
+  });
 };
 
-// إضافة عادة جديدة
-document.getElementById("habit-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const habitName = document.getElementById("habit-name").value;
+// تحميل الأسئلة وعرضها بناءً على النوع
+const loadQuestions = async () => {
+  const type = document.getElementById("type").value;
 
-  if (!habitName) return;
+  // جلب الأسئلة من كل الأنواع
+  const multipleChoiceQuestions = await getQuestionsByType("multiple-choice");
+  const matchQuestions = await getQuestionsByType("match");
+  const fillInQuestions = await getQuestionsByType("fill-in");
+  const orderQuestions = await getQuestionsByType("order");
 
-  const habit = {
-    name: habitName,
-    date: new Date().toISOString(),
-  };
+  // دمج كل الأسئلة حسب النوع المحدد
+  let questions = [];
+  if (type === "multiple-choice") {
+    questions = multipleChoiceQuestions;
+  } else if (type === "match") {
+    questions = matchQuestions;
+  } else if (type === "fill-in") {
+    questions = fillInQuestions;
+  } else if (type === "order") {
+    questions = orderQuestions;
+  }
 
-  const transaction = db.transaction(["habits"], "readwrite");
-  const store = transaction.objectStore("habits");
-  store.add(habit);
+  const testSection = document.getElementById("testSection");
+  testSection.innerHTML = "";
 
-  transaction.oncomplete = function () {
-    addHabitToUI(habit);
-    document.getElementById("habit-form").reset();
-    updateStatus("Habit added successfully!");
-  };
-  transaction.onerror = function () {
-    console.error("Error adding habit.");
-  };
-});
+  // عرض الأسئلة
+  questions.forEach((q, index) => {
+    let questionHTML = "";
+    if (type === "multiple-choice") {
+      questionHTML = `
+        <div>
+          <p>${index + 1}. ${q.question}</p>
+          <input type="radio" name="q${index}" value="A"> ${q.optionA}<br>
+          <input type="radio" name="q${index}" value="B"> ${q.optionB}<br>
+          <input type="radio" name="q${index}" value="C"> ${q.optionC}<br>
+          <input type="radio" name="q${index}" value="D"> ${q.optionD}<br>
+        </div>
+      `;
+    } else if (type === "order") {
+      const words = q.sentence.split(' ').sort(() => Math.random() - 0.5);
+      questionHTML = `
+        <div>
+          <p>${index + 1}. رتب الكلمات: ${words.join(' ')}</p>
+          <input type="text" name="q${index}" placeholder="أدخل الترتيب الصحيح">
+        </div>
+      `;
+    } else if (type === "fill-in") {
+      questionHTML = `
+        <div>
+          <p>${index + 1}. ${q.question.replace('______', '<input type="text" name="q${index}" placeholder="أكمل العبارة">')}</p>
+        </div>
+      `;
+    } else if (type === "match") {
+      const options = [...q.options].sort(() => Math.random() - 0.5);
+      questionHTML = `
+        <div>
+          <p>${index + 1}. وصل الخيارات: ${q.question}</p>
+          ${options.map((option, i) => `<input type="text" name="q${index}" placeholder="وصل مع الخيار ${i + 1}">`).join('<br>')}
+        </div>
+      `;
+    }
+    testSection.innerHTML += questionHTML;
+  });
+};
 
-// تحميل العادات من IndexedDB
-function loadHabits() {
-  const transaction = db.transaction(["habits"], "readonly");
-  const store = transaction.objectStore("habits");
-  const request = store.getAll();
+// إرسال الإجابات وحساب النتيجة
+const submitTest = async () => {
+  const type = document.getElementById("type").value;
 
-  request.onsuccess = function () {
-    const habits = request.result;
-    habits.forEach(addHabitToUI);
-  };
-}
+  // جلب الأسئلة بناءً على النوع المحدد
+  const multipleChoiceQuestions = await getQuestionsByType("multiple-choice");
+  const matchQuestions = await getQuestionsByType("match");
+  const fillInQuestions = await getQuestionsByType("fill-in");
+  const orderQuestions = await getQuestionsByType("order");
 
-// عرض العادة على واجهة المستخدم
-function addHabitToUI(habit) {
-  const habitList = document.getElementById("habit-list");
-  const li = document.createElement("li");
-  li.textContent = `${habit.name} (${new Date(habit.date).toLocaleDateString()})`;
-  habitList.appendChild(li);
-}
+  // دمج الأسئلة
+  let questions = [];
+  if (type === "multiple-choice") {
+    questions = multipleChoiceQuestions;
+  } else if (type === "match") {
+    questions = matchQuestions;
+  } else if (type === "fill-in") {
+    questions = fillInQuestions;
+  } else if (type === "order") {
+    questions = orderQuestions;
+  }
 
-// تحديث حالة المستخدم
-function updateStatus(message) {
-  const status = document.getElementById("status");
-  status.textContent = message;
-  setTimeout(() => (status.textContent = ""), 3000);
-}
+  let score = 0;
+
+  // حساب النتيجة بناءً على الإجابات
+  questions.forEach((q, index) => {
+    const answerElements = document.getElementsByName(`q${index}`);
+    const correctAnswer = q.correctAnswer;
+
+    if (answerElements.length) {
+      answerElements.forEach((element) => {
+        if (element.checked && element.value === correctAnswer) {
+          score++;
+        }
+      });
+    } else {
+      const userAnswer = answerElements[0]?.value;
+      if (userAnswer === correctAnswer) {
+        score++;
+      }
+    }
+  });
+
+  // عرض النتيجة
+  document.getElementById("result").textContent = score;
+};
+
+// تحميل الأسئلة عند فتح الصفحة
+window.onload = loadQuestions;

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إجراء الاختبار</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>إجراء الاختبار</h1>
+    <nav>
+      <a href="index.html">الصفحة الرئيسية</a>
+      <a href="multiple-choice.html">اختر الإجابة</a>
+      <a href="match.html">وصل الخيارات</a>
+      <a href="fill-in.html">أكمل العبارة</a>
+      <a href="order.html">رتب الكلمات</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>اختر نوع الاختبار</h2>
+      <select id="type" onchange="loadQuestions()">
+        <option value="multiple-choice">اختر الإجابة</option>
+        <option value="match">وصل الخيارات</option>
+        <option value="fill-in">أكمل العبارة</option>
+        <option value="order">رتب الكلمات</option>
+      </select>
+    </section>
+    <section id="testSection">
+      <!-- الأسئلة ستكون هنا -->
+    </section>
+    <section>
+      <button onclick="submitTest()">إرسال الإجابات</button>
+      <h3>النتيجة: <span id="result">0</span></h3>
+    </section>
+  </main>
+  <script src="take-test.js"></script>
+</body>
+</html>

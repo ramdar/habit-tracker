@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اختبار</title>
+  <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+
+  <h1>اختبار</h1>
+
+  <div id="questionContainer">
+    <p id="questionText"></p>
+    <div id="answersContainer"></div>
+    <button id="nextQuestionBtn" onclick="nextQuestion()">السؤال التالي</button>
+  </div>
+
+  <h2>شريط التقدم</h2>
+  <progress id="progressBar" value="0" max="100"></progress>
+
+  <h3>الإجابات الصحيحة: <span id="correctAnswers">0</span></h3>
+  <h3>الإجابات الخاطئة: <span id="incorrectAnswers">0</span></h3>
+
+  <script src="app2.js"></script>
+</body>
+</html>

@@ -1,50 +1,110 @@
+/* أسلوب تصميم موحد لجميع الصفحات */
 body {
   font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
   margin: 0;
   padding: 0;
-  background: #f4f4f4;
   color: #333;
 }
 
-#app {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
+header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 15px;
   text-align: center;
 }
 
-form {
-  display: flex;
-  gap: 10px;
+header h1 {
+  margin: 0;
+  font-size: 24px;
 }
 
-input, button {
-  padding: 10px;
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
   font-size: 16px;
 }
 
-#habit-list {
-  margin-top: 20px;
-  list-style: none;
-  padding: 0;
+nav a:hover {
+  text-decoration: underline;
 }
 
-#habit-list li {
-  padding: 10px;
-  background: #e0e0e0;
+main {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+form h2 {
+  font-size: 20px;
   margin-bottom: 10px;
-  border-radius: 5px;
 }
 
-#status {
+label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+input, textarea, select, button {
+  width: 100%;
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
   margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+footer {
   text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
   font-size: 14px;
-  color: green;
 }

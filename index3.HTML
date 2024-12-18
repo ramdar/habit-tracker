@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اختبار</title>
+  <link rel="stylesheet" href="styles3.css">
+</head>
+<body>
+
+  <h1>وصل</h1>
+<div id="questionContainer">
+  <h2 id="questionText"></h2>
+  <div id="leftColumn" class="column">
+    <h3>المجموعة 1</h3>
+    <div id="leftOptions"></div>
+  </div>
+  <div id="rightColumn" class="column">
+    <h3>المجموعة 2</h3>
+    <div id="rightOptions"></div>
+  </div>
+  <button id="nextQuestionBtn" style="display:none;" onclick="nextQuestion()">السؤال التالي</button>
+  <progress id="progressBar" max="100" value="0"></progress>
+  <div>
+    <span>الإجابات الصحيحة: <span id="correctAnswers">0</span></span>
+    <span>الإجابات الخاطئة: <span id="incorrectAnswers">0</span></span>
+  </div>
+</div>
+
+
+
+  <script src="app3.js"></script>
+</body>
+</html>
